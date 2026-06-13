@@ -1,0 +1,12 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="CatwalkGlowing_OLTP"
+  DTS:DTSID="{76D7ED78-7E6E-4E2A-A1EC-06EBBCFF427F}"
+  DTS:CreationName="OLEDB">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectRetryCount="1"
+      DTS:ConnectRetryInterval="5"
+      DTS:ConnectionString="Data Source=localhost;Initial Catalog=CatwalkGlowing_OLTP;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-Proyecto 2 OLAP-{76D7ED78-7E6E-4E2A-A1EC-06EBBCFF427F}GUEGUE\MSSQLSERVER2019.CatwalkGlowing_OLTP;" />
+  </DTS:ObjectData>
+</DTS:ConnectionManager>
