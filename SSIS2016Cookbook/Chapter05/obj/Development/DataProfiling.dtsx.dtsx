@@ -1,0 +1,173 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="5/20/2026 5:57:14 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="KEYLOR"
+  DTS:CreatorName="KEYLOR\Keylor"
+  DTS:DTSID="{994E8BFC-5A13-48BA-8A08-B119771081E1}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="17.0.1016.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package"
+  DTS:PackageType="5"
+  DTS:VersionBuild="3"
+  DTS:VersionGUID="{358B0036-9FA3-4F66-8DA4-C1CD743BBE4F}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[DataProfiling.xml]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{B0564239-878C-4681-B241-873280CDB2EC}"
+      DTS:ObjectName="DataProfiling.xml">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:FileUsageType="1"
+          DTS:ConnectionString="C:\SSIS2016Cookbook\Chapter05\DataProfiling.xml" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[localhost.AdventureWorksDW2014]"
+      DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{3B25356C-4695-47CF-9067-0010340255F6}"
+      DTS:ObjectName="localhost.AdventureWorksDW2014">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=localhost;Initial Catalog=AdventureWorksDW2014;Integrated Security=True;TrustServerCertificate=True;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Tarea de generación de perfiles de datos"
+      DTS:CreationName="Microsoft.DataProfilingTask"
+      DTS:Description="Tarea de generación de perfiles de datos"
+      DTS:DTSID="{5AF1F7C6-89AA-47EF-BC35-EFE30F258D07}"
+      DTS:ExecutableType="Microsoft.DataProfilingTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Tarea de generación de perfiles de datos"
+      DTS:TaskContact="Data Profiling Task; Microsoft Corporation; SQL Server 2025; (c) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <DataProfilingTaskData
+          Destination="DataProfiling.xml"
+          OverwriteDestination="True">
+          <ProfileInput><![CDATA[<?xml version="1.0" encoding="utf-16"?>
+<DataProfile xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.microsoft.com/sqlserver/2008/DataDebugger/">
+  <ProfileVersion>1.0</ProfileVersion>
+  <DataSources />
+  <DataProfileInput>
+    <ProfileMode>Exact</ProfileMode>
+    <Timeout>0</Timeout>
+    <Requests>
+      <ColumnLengthDistributionProfileRequest ID="LengthDistReq">
+        <DataSourceID>{3B25356C-4695-47CF-9067-0010340255F6}</DataSourceID>
+        <Table Schema="dbo" Table="Chapter05Profiling" />
+        <Column IsWildCard="false" ColumnName="MiddleName" />
+        <IgnoreLeadingSpace>false</IgnoreLeadingSpace>
+        <IgnoreTrailingSpace>true</IgnoreTrailingSpace>
+      </ColumnLengthDistributionProfileRequest>
+      <FunctionalDependencyProfileRequest ID="FDReq">
+        <DataSourceID>{3B25356C-4695-47CF-9067-0010340255F6}</DataSourceID>
+        <Table Schema="dbo" Table="Chapter05Profiling" />
+        <DeterminantColumns>
+          <Column IsWildCard="false" ColumnName="Education" />
+          <Column IsWildCard="false" ColumnName="HouseOwnerFlag" />
+          <Column IsWildCard="false" ColumnName="MaritalStatus" />
+          <Column IsWildCard="false" ColumnName="NumberCarsOwned" />
+        </DeterminantColumns>
+        <DependentColumn IsWildCard="false" ColumnName="Occupation" />
+        <ThresholdSetting>Specified</ThresholdSetting>
+        <FDStrengthThreshold>0.3</FDStrengthThreshold>
+        <VerifyOutputInFastMode>false</VerifyOutputInFastMode>
+        <MaxNumberOfViolations>100</MaxNumberOfViolations>
+      </FunctionalDependencyProfileRequest>
+      <CandidateKeyProfileRequest ID="KeyReq">
+        <DataSourceID>{3B25356C-4695-47CF-9067-0010340255F6}</DataSourceID>
+        <Table Schema="dbo" Table="Chapter05Profiling" />
+        <KeyColumns>
+          <Column IsWildCard="false" ColumnName="Age" />
+          <Column IsWildCard="false" ColumnName="BikeBuyer" />
+          <Column IsWildCard="false" ColumnName="CommuteDistance" />
+          <Column IsWildCard="false" ColumnName="CustomerKey" />
+          <Column IsWildCard="false" ColumnName="Education" />
+          <Column IsWildCard="false" ColumnName="EmailAddress" />
+          <Column IsWildCard="false" ColumnName="FirstName" />
+          <Column IsWildCard="false" ColumnName="Gender" />
+          <Column IsWildCard="false" ColumnName="HouseOwnerFlag" />
+          <Column IsWildCard="false" ColumnName="LastName" />
+          <Column IsWildCard="false" ColumnName="MaritalStatus" />
+          <Column IsWildCard="false" ColumnName="MiddleName" />
+          <Column IsWildCard="false" ColumnName="NumberCarsOwned" />
+          <Column IsWildCard="false" ColumnName="NumberChildrenAtHome" />
+          <Column IsWildCard="false" ColumnName="Occupation" />
+          <Column IsWildCard="false" ColumnName="Region" />
+          <Column IsWildCard="false" ColumnName="TotalChildren" />
+        </KeyColumns>
+        <ThresholdSetting>Specified</ThresholdSetting>
+        <KeyStrengthThreshold>0.95</KeyStrengthThreshold>
+        <VerifyOutputInFastMode>false</VerifyOutputInFastMode>
+        <MaxNumberOfViolations>100</MaxNumberOfViolations>
+      </CandidateKeyProfileRequest>
+      <ColumnNullRatioProfileRequest ID="NullRatioReq">
+        <DataSourceID>{3B25356C-4695-47CF-9067-0010340255F6}</DataSourceID>
+        <Table Schema="dbo" Table="Chapter05Profiling" />
+        <Column IsWildCard="false" ColumnName="MiddleName" />
+      </ColumnNullRatioProfileRequest>
+      <ColumnPatternProfileRequest ID="PatternReq">
+        <DataSourceID>{3B25356C-4695-47CF-9067-0010340255F6}</DataSourceID>
+        <Table Schema="dbo" Table="Chapter05Profiling" />
+        <Column IsWildCard="false" ColumnName="EmailAddress" />
+        <MaxNumberOfPatterns>10</MaxNumberOfPatterns>
+        <PercentageDataCoverageDesired>95</PercentageDataCoverageDesired>
+        <CaseSensitive>false</CaseSensitive>
+        <Delimiters> \t\r\n</Delimiters>
+        <Symbols>,.;:-"'`~=&amp;/\\@!?()&lt;&gt;[]{}|#*^%</Symbols>
+        <TagTableName />
+      </ColumnPatternProfileRequest>
+      <ColumnStatisticsProfileRequest ID="StatisticsReq">
+        <DataSourceID>{3B25356C-4695-47CF-9067-0010340255F6}</DataSourceID>
+        <Table Schema="dbo" Table="Chapter05Profiling" />
+        <Column IsWildCard="false" ColumnName="Age" />
+      </ColumnStatisticsProfileRequest>
+      <ColumnValueDistributionProfileRequest ID="ValueDistReq">
+        <DataSourceID>{3B25356C-4695-47CF-9067-0010340255F6}</DataSourceID>
+        <Table Schema="dbo" Table="Chapter05Profiling" />
+        <Column IsWildCard="false" ColumnName="NumberCarsOwned" />
+        <Option>FrequentValues</Option>
+        <FrequentValueThreshold>0.001</FrequentValueThreshold>
+      </ColumnValueDistributionProfileRequest>
+    </Requests>
+  </DataProfileInput>
+  <DataProfileOutput>
+    <Profiles />
+  </DataProfileOutput>
+</DataProfile>]]></ProfileInput>
+        </DataProfilingTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
+<!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
+<!--El paquete podrá cargarse normalmente, pero se perderá la información de diseño anterior y el diseñador reorganizará los elementos automáticamente en la superficie de diseño.-->
+<Objects
+  Version="8">
+  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecución.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="267.2,41.6"
+          Id="Package\Tarea de generación de perfiles de datos"
+          TopLeft="208.333321950502,87.5333327246375" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
